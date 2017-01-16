@@ -37,6 +37,7 @@
 
     <!-- Custom Theme Style -->
     <link href="./css/custom.css" rel="stylesheet">
+    <link href="./css/custom.min.css" rel="stylesheet">
 
     <!-- Scripts -->
     <script>
@@ -77,7 +78,9 @@
     <!-- Flot plugins -->
     <!-- <script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script> -->
     <!-- <script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/flot/0.8.3/jquery.flot.js"></script>
+
+    <script src="./js/jquery.flot.orderBars.js"></script>
+    <script src="./js/jquery.flot.spline.min.js"></script>
     <script src="https://cdn.rawgit.com/MichaelZinsmaier/CurvedLines/1.1.1/curvedLines.js"></script>
     <!-- DateJS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datejs/1.0/date.min.js"></script>
@@ -91,10 +94,11 @@
 
     <!-- Custom Theme Scripts -->
     <script src="./js/custom.js"></script>
+    <!-- <script src="./js/custom.min.js"></script> -->
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/jquery.min.js"></script>
     <script src="./js/shCore.js"></script>
-
+    <!-- <script src="./js/datepicker/daterangepicker.js"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pnotify/3.0.0/pnotify.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.0.5/es6-promise.min.js"></script> <!-- for IE support -->
@@ -107,5 +111,6 @@
 </body>
 @yield('script')
 <script src="/js/app.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"/>
 </html>

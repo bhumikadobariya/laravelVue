@@ -91,11 +91,11 @@ class usersController extends Controller
     return Auth::user();
   }
 
-  public function updatePassword($userID){
+  public function updatePassword(Request $request, $userID){
     $inputs = $request->all();
     $user =User::find($userID);
     $rules = array(
-        'password'      => 'required|min:3'
+        'password'      => 'required|min:6'
     );
 
     $validator = Validator::make($inputs, $rules);
@@ -111,18 +111,17 @@ class usersController extends Controller
 
     }
     // $user = User:: findOrFail($user->id);
-    if(isset($inputs['old_password']) && $inputs['old_password'] != '')
+    if( (($inputs['password']) != $inputs['password_confirmation']) || ($inputs['password_confirmation'] == ''))
     {
-        if(!Hash::check($request->get('old_password'), $user->password)){
           return Response::json([
                               'success' => false,
-                              'errors'    =>'old password does not match',
+                              'errors'    =>'password confirmation does not match',
                               'data' => []
                             ], 401)->header('Content-Type', 'application/json');
-        }
+
     }
 
-    $user->password = $inputs['password'];
+    $user->password = Hash::make($inputs['password']);
     $user->save();
      return Response::json([
                               'success' => true,

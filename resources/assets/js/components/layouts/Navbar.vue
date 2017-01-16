@@ -14,7 +14,7 @@
               <span class=" fa fa-angle-down"></span>
             </a>
             <ul class="dropdown-menu dropdown-usermenu pull-right">
-              <li><button @click="logout()" class="btn btn-default col-sm-12" ><i class="fa fa-sign-out pull-right"></i>Logout</button></li>
+              <li><a @click="logout()" class="btn btn-default col-sm-12" ><i class="fa fa-sign-out pull-right"></i>Logout</a></li>
             </ul>
           </li>
         </ul>

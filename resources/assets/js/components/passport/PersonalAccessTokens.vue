@@ -9,54 +9,54 @@
 </style>
 
 <template>
-    <div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                  <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span>
-                          Personal Access Tokens
-                      </span>
-
-                      <a class="action-link" @click="showCreateTokenForm">
-                          Create New Token
-                      </a>
-                  </div>
-                </div>
-
-                <div class="panel-body">
-                  <!-- No Tokens Notice -->
-                  <p class="m-b-none" v-if="tokens.length === 0">
-                      You have not created any personal access tokens.
-                  </p>
-
-                  <!-- Personal Access Tokens -->
-                  <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" v-if="tokens.length > 0">
-                      <thead>
-                          <tr>
-                              <th>Name</th>
-                              <th></th>
-                          </tr>
-                      </thead>
-
-                      <tbody>
-                          <tr v-for="token in tokens">
-                              <!-- Client Name -->
-                              <td style="vertical-align: middle;">
-                                  {{ token.name }}
-                              </td>
-
-                              <!-- Delete Button -->
-                              <td style="vertical-align: middle;">
-                                  <a class="action-link text-danger" @click="revoke(token)">
-                                      Delete
-                                  </a>
-                              </td>
-                          </tr>
-                      </tbody>
-                  </table>
-              </div>
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="x_panel tile">
+            <div class="x_title">
+              <h2>
+                  Personal Access Tokens
+              </h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="action-link" @click="showCreateTokenForm">
+                        Create New Token
+                    </a>
+                </li>
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
             </div>
+
+            <div class="x_content">
+                <!-- No Tokens Notice -->
+                <p class="m-b-none" v-if="tokens.length === 0">
+                    You have not created any personal access tokens.
+                </p>
+
+                <!-- Personal Access Tokens -->
+                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" v-if="tokens.length > 0">
+
+                  <tr>
+                      <th>Name</th>
+                      <th>Actions</th>
+                  </tr>
+                  <tr v-for="token in tokens">
+                      <!-- Client Name -->
+                      <td style="vertical-align: middle;">
+                          {{ token.name }}
+                      </td>
+
+                      <!-- Delete Button -->
+                      <td style="vertical-align: middle;">
+                      <div class="nav align-centre">
+                      <a @click="revoke(token)" class="action-link text-danger"><i class="fa fa-remove"></i></a>
+                      </div>
+                      </td>
+                  </tr>
+                </table>
+            </div>
+          </div>
         </div>
 
         <!-- Create Token Modal -->
@@ -155,7 +155,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </template>
 
 <script>

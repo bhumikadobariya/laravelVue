@@ -10,68 +10,60 @@
 
 <template>
     <div>
-        <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span>
-                      OAuth Clients
-                  </span>
-
-                  <a class="action-link" @click="showCreateClientForm">
+        <div class="col-md-4 col-sm-4 col-xs-12">
+          <div class="x_panel tile">
+            <div class="x_title">
+                <h2>
+                  OAuth Clients
+                </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                  <li><a class="action-link" @click="showCreateClientForm">
                       Create New Client
-                  </a>
-                </div>
+                      </a>
+                  </li>
+                  <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                  </li>
+                  <li><a class="close-link"><i class="fa fa-close"></i></a>
+                  </li>
+                </ul>
+                <div class="clearfix"></div>
               </div>
-              <div class="panel-body">
+              <div class="x_content">
                   <!-- Current Clients -->
                   <p class="m-b-none" v-if="clients.length === 0">
                       You have not created any OAuth clients.
                   </p>
 
-                  <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%" v-if="clients.length > 0">
-                      <thead>
-                          <tr>
-                              <th>Client ID</th>
-                              <th>Name</th>
-                              <th>Secret</th>
-                              <th></th>
-                              <th></th>
-                          </tr>
-                      </thead>
+                  <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" v-if="clients.length > 0">
 
-                      <tbody>
-                          <tr v-for="client in clients">
-                              <!-- ID -->
-                              <td style="vertical-align: middle;">
-                                  {{ client.id }}
-                              </td>
+                    <tr>
+                        <th>Client ID</th>
+                        <th>Name</th>
+                        <th>Secret</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr v-for="client in clients">
+                        <!-- ID -->
+                        <td style="vertical-align: middle;">
+                            {{ client.id }}
+                        </td>
 
-                              <!-- Name -->
-                              <td style="vertical-align: middle;">
-                                  {{ client.name }}
-                              </td>
+                        <!-- Name -->
+                        <td style="vertical-align: middle;">
+                            {{ client.name }}
+                        </td>
 
-                              <!-- Secret -->
-                              <td style="vertical-align: middle;">
-                                  <code>{{ client.secret }}</code>
-                              </td>
-
-                              <!-- Edit Button -->
-                              <td style="vertical-align: middle;">
-                                  <a class="action-link" @click="edit(client)">
-                                      Edit
-                                  </a>
-                              </td>
-
-                              <!-- Delete Button -->
-                              <td style="vertical-align: middle;">
-                                  <a class="action-link text-danger" @click="destroy(client)">
-                                      Delete
-                                  </a>
-                              </td>
-                          </tr>
-                      </tbody>
+                        <!-- Secret -->
+                        <td style="vertical-align: middle;">
+                          <code>{{client.secret}}</code>
+                        </td>
+                        <td style="vertical-align: middle;">
+                          <div class="nav align-centre">
+                            <a @click="edit(client)"><i class="fa fa-edit"></i></a>&nbsp;&nbsp;&nbsp;
+                            <a @click="destroy(client)"><i class="fa fa-remove"></i></a>&nbsp;&nbsp;&nbsp;
+                          </div>
+                        </td>
+                    </tr>
                   </table>
               </div>
             </div>
