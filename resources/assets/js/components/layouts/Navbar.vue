@@ -10,11 +10,11 @@
         <ul class="nav navbar-nav navbar-right">
           <li class="">
             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-              <img/>{{users.name}}
+              {{users.name}}
               <span class=" fa fa-angle-down"></span>
             </a>
             <ul class="dropdown-menu dropdown-usermenu pull-right">
-              <li><button @click="logout()"><i class="fa fa-sign-out pull-right"></i> Log Out</button></li>
+              <li><button @click="logout()" class="btn btn-default col-sm-12" ><i class="fa fa-sign-out pull-right"></i>Logout</button></li>
             </ul>
           </li>
         </ul>

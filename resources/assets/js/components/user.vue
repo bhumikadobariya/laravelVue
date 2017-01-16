@@ -10,7 +10,101 @@
 
 <template>
    <div class="right_col" role="main">
-    <div class="">
+
+      <!-- top tiles -->
+      <div class="row tile_count">
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+          <div class="count">2500</div>
+          <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
+          <div class="count">123.50</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>3% </i> From last Week</span>
+        </div>
+        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+          <span class="count_top"><i class="fa fa-user"></i> Total Males</span>
+          <div class="count green">2,500</div>
+          <span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i>34% </i> From last Week</span>
+        </div>
+      </div>
+      <!-- /top tiles -->
+
+
+      <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="dashboard_graph">
+
+            <div class="row x_title">
+              <div class="col-md-6">
+                <h3>Network Activities <small>Graph title sub-title</small></h3>
+              </div>
+              <div class="col-md-6">
+                <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                  <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                  <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-9 col-sm-9 col-xs-12">
+              <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
+              <div style="width: 100%;">
+                <div id="canvas_dahs" class="demo-placeholder" style="width: 100%; height:270px;"></div>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-xs-12 bg-white">
+              <div class="x_title">
+                <h2>Top Campaign Performance</h2>
+                <div class="clearfix"></div>
+              </div>
+
+              <div class="col-md-12 col-sm-12 col-xs-6">
+                <div>
+                  <p>Facebook Campaign</p>
+                  <div class="">
+                    <div class="progress progress_sm" style="width: 76%;">
+                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80"></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>Twitter Campaign</p>
+                  <div class="">
+                    <div class="progress progress_sm" style="width: 76%;">
+                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-sm-12 col-xs-6">
+                <div>
+                  <p>Conventional Media</p>
+                  <div class="">
+                    <div class="progress progress_sm" style="width: 76%;">
+                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <p>Bill boards</p>
+                  <div class="">
+                    <div class="progress progress_sm" style="width: 76%;">
+                      <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+
+
       <div class="page-title">
         <div class="title_left">
           <h3>Dashboard</h3>
@@ -71,13 +165,13 @@
                 </tr>
               </table>
 
-              <passport_clients></passport_clients>
-              <passport_authorized_clients></passport_authorized_clients>
-              <passport_personal_access_tokens></passport_personal_access_tokens>
-
             </div>
           </div>
         </div>
+
+        <passport_clients></passport_clients>
+        <passport_authorized_clients></passport_authorized_clients>
+        <passport_personal_access_tokens></passport_personal_access_tokens>
 
       </div>
       <!-- Edit user Modal -->
@@ -93,16 +187,6 @@
           </div>
 
           <div class="modal-body">
-            <!-- Form Errors -->
-            <div class="alert alert-danger" v-if="editForm.errors.length > 0">
-              <p><strong>Whoops!</strong> Something went wrong!</p>
-              <br>
-              <ul>
-                <!-- <li v-for="error in editForm.errors">
-                  {{ error }}
-                </li> -->
-              </ul>
-            </div>
 
             <!-- Edit user Form -->
             <form class="form-horizontal" role="form">
@@ -160,35 +244,42 @@
           </div>
 
           <div class="modal-body">
+            <!-- Form Errors -->
+            <div class="alert alert-danger" v-if="errorsPasswordForm.errors.length > 0">
+              <p><strong>Whoops!</strong> Something went wrong!</p>
+              <br>
+              <div v-if="errorsPasswordForm.errors">
 
-            <!-- Edit Password Form -->
+                  {{ errorsPasswordForm.errors }}
+
+              </div>
+            </div>
+
+            <!-- Edit user Password Form-->
             <form class="form-horizontal" role="form">
-              <!-- Password -->
+
+              <!-- New Password -->
               <div class="form-group">
-                <label class="col-md-3 control-label">Old Password</label>
-
-                <div class="col-md-7">
-                  <input id="old_password" name="old_password" type="text" class="form-control"
-                                              @keyup.enter="updatePassword"/>
-
-                  <!-- <span class="error text-danger" v-if="errorsEditForm.name">
-                    @{{ errorsEditForm['name'] }}
-                  </span> -->
-                </div>
-                <br/>
-                <div class="form-group">
                 <label class="col-md-3 control-label">New Password</label>
 
                 <div class="col-md-7">
-                  <input id="password" name="password" type="text" class="form-control"
-                                              @keyup.enter="updatePassword"/>
+                  <input id="password" type="password" name="password" type="text" class="form-control"
+                                              @keyup.enter="updatePassword"  v-model="userPassword.password"/>
 
-                  <!-- <span class="error text-danger" v-if="errorsEditForm.name">
-                    @{{ errorsEditForm['name'] }}
-                  </span> -->
+
                 </div>
               </div>
+              <!-- Confirmation Password -->
+              <div class="form-group">
+                <label class="col-md-3 control-label">Confirmation Password</label>
 
+                <div class="col-md-7">
+                  <input id="password-confirm" type="password" name="password_confirmation" type="text" class="form-control"
+                                              @keyup.enter="updatePassword"  v-model="userPassword.password_confirmation"/>
+
+
+                </div>
+              </div>
             </form>
           </div>
 
@@ -197,13 +288,13 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
             <button type="button" class="btn btn-primary" @click="updatePassword">
-             update password
+             Update Password
             </button>
           </div>
         </div>
       </div>
     </div>
-    </div>
+
   </div>
 </template>
 
@@ -239,16 +330,18 @@ export default {
         email:null
       },
 
+      errorsPasswordForm:{
+        errors:null
+      },
+
       editForm: {
-        errors: [],
         name: '',
-        email: '',
-        password:''
+        email: ''
       },
 
       userPassword: {
         password:'',
-        old_password:''
+        password_confirmation:''
       }
     }
   },
@@ -307,7 +400,6 @@ export default {
 
     editPassword(user) {
       this.userPassword.id = user.id;
-      this.userPassword.password = user.password;
 
       $('#modal-edit-password').modal('show');
     },
@@ -333,7 +425,7 @@ export default {
 
     updatePassword() {
       this.persistUsersPassword(
-        'post', '/api/user/' + this.users.id +'/updatePassword',
+        'post', '/api/user/' + this.userPassword.id +'/updatePassword',
         this.userPassword, '#modal-edit-password'
       );
     },
@@ -342,15 +434,13 @@ export default {
      */
     persistUsersPassword(method, uri, form, modal) {
       form.errors = [];
-      console.log(uri,"yyyyyyyyy");
-
+      console.log(method, uri, form, modal, "whole data");
       this.$http[method](uri, form)
         .then(response => {
-          // this.errorsEditForm.name= this.errorsEditForm.email = null;
           this.fetchUsers();
 
           form.password = '';
-          form.old_password = '';
+          form.password_confirmation = '';
           form.errors = [];
 
           $(modal).modal('hide');
@@ -358,10 +448,8 @@ export default {
         .catch(response => {
           var Data = JSON.parse(response.body);
           if (typeof response.data === 'object') {
-              // this.errorsEditForm.name = Data.errors.name;
-              // this.errorsEditForm.email = Data.errors.email;
+              this.errorsPasswordForm.errors = Data.errors;
           } else {
-            // this.errorsEditForm.name= this.errorsEditForm.email = null;
             form.errors = ['Something went wrong. Please try again.'];
           }
         });
@@ -374,7 +462,7 @@ export default {
 
       this.$http[method](uri, form)
         .then(response => {
-          this.errorsEditForm.name= this.errorsEditForm.email = null;
+          this.errorsEditForm.name = this.errorsEditForm.email = null;
           this.fetchUsers();
 
           form.name = '';

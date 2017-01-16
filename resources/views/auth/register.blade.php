@@ -65,8 +65,8 @@
             <br />
 
             <div>
-              <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-              <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+              <h1><i class="fa fa-paw"></i> {{ config('app.name', 'Laravel') }}</h1>
+              <p>©2017 All Rights Reserved. Privacy and Terms</p>
             </div>
           </div>
 
@@ -75,4 +75,8 @@
     <!-- </div> -->
   </div>
 </div>
+@endsection
+
+@section('script')
+<script>$('body').addClass('login')</script>
 @endsection
